@@ -20,7 +20,7 @@ class Cell extends React.Component{
 
        const animal =  e.dataTransfer
         .getData('animal')
-        if (animal ==='chicken'){
+        if (animal ==='chicken' && this.state.cellClass!=='green'){
 
              addChick();
              console.log(this.props.chickCount)
