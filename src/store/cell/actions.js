@@ -1,8 +1,14 @@
 import * as types from './actionTypes';
 
-export const addChick = newCount => {
+export const addChick = ()=> {
     return {
       type: types.addChicken
+    };
+  };
+
+  export const addRye = () => {
+    return {
+      type: types.addRye
     };
   };
 

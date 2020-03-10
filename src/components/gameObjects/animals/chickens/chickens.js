@@ -10,7 +10,7 @@ class Chicken extends React.Component{
 
     onStart(e){
         e.dataTransfer
-        .setData('animal', 'chicken');
+        .setData('content', 'chicken');
     }
 
     render(){
