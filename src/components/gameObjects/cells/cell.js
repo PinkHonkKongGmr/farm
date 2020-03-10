@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import * as actionCells from '../../../store/cell/actions';
 import * as generatorsCells from '../../../store/generators/actions';
+import { Button } from 'reactstrap';
 import './cells.scss'
 
 class Cell extends React.Component{
@@ -15,13 +16,7 @@ class Cell extends React.Component{
         }
     }
 
-    componentDidMount(){
-        setInterval(()=>{
-            if(this.state.harvest===0 && this.state.cellClass === 'rye'){
-                this.setState({harvest:1})
-            }
-        },10000)
-    }
+
 
     onDragOverHandler =(e)=>{
         e.preventDefault();
@@ -30,11 +25,17 @@ class Cell extends React.Component{
     onDropHandler = (e)=>{
         const  {addChick, addRye} = this.props
 
+        setInterval(()=>{
+            if(this.state.harvest===0 && this.state.cellClass === 'rye'){
+                this.setState({harvest:1})
+            }
+        },10000)
+
        const content =  e.dataTransfer
         .getData('content')
-        if (content ==='chicken' && this.state.cellClass!=='green'){
+        if (content ==='chicken' && this.state.cellClass!=='chicken'){
              addChick();
-            this.setState({cellClass:'green'})
+            this.setState({cellClass:'chicken'})
         }
         if (content ==='rye' && this.state.cellClass!=='rye'){
             addRye();
@@ -55,7 +56,7 @@ class Cell extends React.Component{
         cellContent =<div>урожай: {this.state.harvest}</div>
         }
         if(this.state.cellClass === 'chicken'){
-            cellContent =<div>ики: {this.state.eggs}<button></button></div>
+            cellContent =<div>ики: {this.state.eggs}<Button>Покормиц</Button></div>
             }
         return <div className = {this.state.cellClass} onDragOver ={this.onDragOverHandler} onDrop={this.onDropHandler}
          onClick ={this.onClickHandler}>{cellContent}</div>

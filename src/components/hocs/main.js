@@ -9,8 +9,8 @@ const MainHoc = ()=>
     <div>
         <FarmField count={8}></FarmField>
         <InfoList></InfoList>
-        <Chicken></Chicken>
-        <Rye></Rye>
+        <Chicken name='chicken'></Chicken>
+        <Rye name ='rye'></Rye>
     </div>
 
 
