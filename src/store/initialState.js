@@ -1,7 +1,10 @@
 
 const initialState = {
+    gameObjects:
+    {drugId:null,
+    position:null},
     money:200,
-    cells:
+    dragged:
    { chickens:0,
     rye:0,
     cow:0

@@ -19,8 +19,8 @@ class infoList extends React.Component{
 
 const mapStateToProps = state => {
     const props = {
-      chickCount: state.cells.chickens,
-      ryeCount: state.cells.rye,
+      chickCount: state.dragged.chickens,
+      ryeCount: state.dragged.rye,
       food: state.generators.food,
     };
     return props;

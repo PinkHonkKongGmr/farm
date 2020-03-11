@@ -1,7 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import * as actionCells from '../../../store/cell/actions';
-import * as generatorsCells from '../../../store/generators/actions';
+import * as actionGameObjects from '../../../store/gameObjects/actions';
 import { Button } from 'reactstrap';
 import './cells.scss'
 
@@ -12,8 +11,9 @@ class Cell extends React.Component{
             cellClass:'red',
             harvest:0,
             eggs:0,
-            milk:0
+            milk:0,
         }
+        this.ref = React.createRef()
     }
 
 
@@ -23,59 +23,40 @@ class Cell extends React.Component{
     }
 
     onDropHandler = (e)=>{
-        const  {addChick, addRye} = this.props
+        const  {setCurrentId, setPosition} = this.props
 
-        setInterval(()=>{
-            if(this.state.harvest===0 && this.state.cellClass === 'rye'){
-                this.setState({harvest:1})
-            }
-        },10000)
-
-       const content =  e.dataTransfer
+       const id =  e.dataTransfer
+        .getData('id');
+       
+       const content = e.dataTransfer
         .getData('content')
-        if (content ==='chicken' && this.state.cellClass!=='chicken'){
-             addChick();
-            this.setState({cellClass:'chicken'})
-        }
-        if (content ==='rye' && this.state.cellClass!=='rye'){
-            addRye();
-           this.setState({cellClass:'rye'})
-       }
-    }
 
-    onClickHandler =()=>{
-        if(this.state.cellClass === 'rye'){
-            this.props.harvester(this.state.harvest)
-            this.setState({harvest:0})
+        if (content !==this.state.cellClass){
+            this.setState({cellClass:content})
+            setCurrentId(id)
+            setPosition({left:this.ref.current.getBoundingClientRect().left,
+                top:this.ref.current.getBoundingClientRect().top})
         }
     }
+ 
 
     render(){
-        let cellContent = null;
-        if(this.state.cellClass === 'rye'){
-        cellContent =<div>урожай: {this.state.harvest}</div>
-        }
-        if(this.state.cellClass === 'chicken'){
-            cellContent =<div>ики: {this.state.eggs}<Button>Покормиц</Button></div>
-            }
-        return <div className = {this.state.cellClass} onDragOver ={this.onDragOverHandler} onDrop={this.onDropHandler}
-         onClick ={this.onClickHandler}>{cellContent}</div>
-       
+        console.log(this.state.dragger)
+            return <div className='red' onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}></div>
     }
 }
 
 const mapStateToProps = state => {
     const props = {
-      chickCount: state.cells.chickens,
-      ryeCount: state.cells.rye,
+      chickCount: state.dragged.chickens,
+      ryeCount: state.dragged.rye,
     };
     return props;
   };
   
   const actionCreators = {
-    addChick: actionCells.addChick,
-    addRye: actionCells.addRye,
-    harvester: generatorsCells.harvester,
+    setCurrentId: actionGameObjects.setCurrentId,
+    setPosition: actionGameObjects.setPosition
   };
   
   export default connect(mapStateToProps, actionCreators)(Cell);

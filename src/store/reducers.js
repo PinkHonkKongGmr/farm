@@ -1,11 +1,13 @@
 import {combineReducers} from 'redux'
-import cells from './cell/reducer'
+import dragged from './dragged/reducer'
 import generators from './generators/reducer'
+import gameObjects from './gameObjects/reducer'
 
 export default () =>
   combineReducers({
-    cells,
-    generators
+    dragged,
+    generators,
+    gameObjects
   });
 
 

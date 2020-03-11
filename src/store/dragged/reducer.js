@@ -1,7 +1,7 @@
 import initialState from '../initialState'
 import * as types from './actionTypes'
 
-const mapReducer  = (state = initialState.cells, action) =>{
+const mapReducer  = (state = initialState.dragged, action) =>{
     switch(action.type){
         case types.addChicken:
             let newValueChic = state.chickens
