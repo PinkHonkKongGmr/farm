@@ -9,9 +9,6 @@ class Cell extends React.Component{
         super(props)
         this.state ={
             cellClass:'red',
-            harvest:0,
-            eggs:0,
-            milk:0,
         }
         this.ref = React.createRef()
     }
