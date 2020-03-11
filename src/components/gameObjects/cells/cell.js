@@ -9,6 +9,7 @@ class Cell extends React.Component{
         super(props)
         this.state ={
             cellClass:'red',
+            droped:false
         }
         this.ref = React.createRef()
     }
@@ -28,7 +29,8 @@ class Cell extends React.Component{
        const content = e.dataTransfer
         .getData('content')
 
-        if (content !==this.state.cellClass){
+        if (!this.state.droped){
+            this.setState({droped:true})
             this.setState({cellClass:content})
             setCurrentId(id)
             setPosition({left:this.ref.current.getBoundingClientRect().left,
