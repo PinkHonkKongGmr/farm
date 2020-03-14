@@ -21,3 +21,22 @@ export const addCow = newCount => {
       },
     };
   };
+
+  export const removeChick = ()=> {
+    return {
+      type: types.removeChicken
+    };
+  };
+
+  export const removeRye = () => {
+    return {
+      type: types.removeRye
+    };
+  };
+
+  
+export const removeCow = newCount => {
+    return {
+      type: types.removeCow,
+    };
+  };

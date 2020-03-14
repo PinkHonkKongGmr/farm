@@ -10,12 +10,21 @@ export const setCurrentId = drugId => {
     };
   };
 
-  export const setPosition = pos => {
-    const position = Object.assign({},pos)
+  export const removeDrag = idToRemove => {
     return {
-      type: types.setPosition,
+      type: types.removeDrag,
+      payload: {
+        idToRemove
+      },
+    };
+  };
+
+  export const setCell = cell => {
+    // const position = Object.assign({},pos)
+    return {
+      type: types.setCell,
       payload:{
-        position
+        cell
       }
     };
   };

@@ -4,44 +4,49 @@ import * as actionGameObjects from '../../../store/gameObjects/actions';
 import { Button } from 'reactstrap';
 import './cells.scss'
 
+
 class Cell extends React.Component{
     constructor(props){
         super(props)
         this.state ={
-            cellClass:'red',
-            droped:false
+            droped:false,
+            mountedId:null,
+            buttonSatus: 'hidden'
         }
+        
         this.ref = React.createRef()
     }
-
 
 
     onDragOverHandler =(e)=>{
         e.preventDefault();
     }
 
+    deleteDrager =() =>{
+        const  {removeDrag} = this.props
+        removeDrag(this.state.mountedId)
+        this.setState({droped:false, buttonSatus:'hidden'})
+    }
+
     onDropHandler = (e)=>{
-        const  {setCurrentId, setPosition} = this.props
+        const  {setCurrentId, setCell} = this.props
 
        const id =  e.dataTransfer
         .getData('id');
        
-       const content = e.dataTransfer
-        .getData('content')
 
         if (!this.state.droped){
-            this.setState({droped:true})
-            this.setState({cellClass:content})
+            this.setState({mountedId:id, droped:true,buttonSatus:'shown'})
             setCurrentId(id)
-            setPosition({left:this.ref.current.getBoundingClientRect().left,
-                top:this.ref.current.getBoundingClientRect().top})
+            setCell(this.ref.current)
         }
     }
  
 
     render(){
-        console.log(this.state.dragger)
-            return <div className='red' onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}></div>
+            return <div className='red' onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}>
+                <Button onClick={this.deleteDrager} className={this.state.buttonSatus}>Очистить, впизду</Button>    
+            </div>
     }
 }
 
@@ -55,7 +60,8 @@ const mapStateToProps = state => {
   
   const actionCreators = {
     setCurrentId: actionGameObjects.setCurrentId,
-    setPosition: actionGameObjects.setPosition
+    setCell: actionGameObjects.setCell,
+    removeDrag: actionGameObjects.removeDrag
   };
   
   export default connect(mapStateToProps, actionCreators)(Cell);

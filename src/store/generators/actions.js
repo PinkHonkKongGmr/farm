@@ -11,6 +11,14 @@ export const harvester = (count) => {
     };
   };
 
+  export const feed = () => {
+    return {
+      type: types.feed
+    };
+  };
+
+
+
   export const putEggs = (count) => {
     return {
       type: types.putEggs,

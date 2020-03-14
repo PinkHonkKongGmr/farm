@@ -8,7 +8,10 @@ const mapReducer  = (state = initialState.gameObjects, action) =>{
         case types.setCurrentId:
             return { ...state, ...action.payload }
 
-        case types.setPosition:
+        case types.removeDrag:
+            return { ...state, ...action.payload }    
+
+        case types.setCell:
                 return { ...state, ...action.payload } 
 
             

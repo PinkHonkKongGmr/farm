@@ -3,8 +3,20 @@
     height: 100px;
     background: blueviolet;
     position: absolute;
+
+    & .btn{
+        position: absolute;
+        bottom: 55px;
+        left:0
+    }
 }
 
-.drugged{
+.dragged_chicken{
+    position: static;
     background: saddlebrown;
+    color:rgb(243, 234, 236);
+}
+
+.wait_for_drag-chicken{
+    top:30px;
 }

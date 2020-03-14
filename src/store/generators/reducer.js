@@ -1,6 +1,6 @@
 import initialState from '../initialState'
 import * as types from './actionTypes'
-import { putEggs } from './actions'
+
 
 const mapReducer  = (state = initialState.generators, action) =>{
     switch(action.type){
@@ -10,10 +10,16 @@ const mapReducer  = (state = initialState.generators, action) =>{
             const incrementHarvest = {food:harvest}
             return { ...state, ...incrementHarvest }    
 
+        case types.feed:
+            let food = state.food
+            food--
+            const dincrementHarvest = {food}
+            return { ...state, ...dincrementHarvest } 
+
         case types.putEggs:
             let putEgg = state.food
             putEgg = putEgg + action.payload.count
-            const incremenEgg= {eggs:putEggs}
+            const incremenEgg= {eggs:putEgg}
             return { ...state, ...incremenEgg } 
 
         case types.milkCow:

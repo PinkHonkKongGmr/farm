@@ -7,6 +7,7 @@
 
 .red{
     background: crimson;
+    position: relative;
 }
 
 .chicken_inside{
@@ -15,4 +16,18 @@
 
 .rye{
     background: lightsalmon;
+}
+
+.btn{
+    position: absolute;
+    bottom: 0;
+}
+
+.hidden{
+    opacity: 0;
+}
+
+.shown{
+    transition: all 0.5s;
+    opacity: 1;
 }

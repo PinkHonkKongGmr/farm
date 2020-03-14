@@ -1,8 +1,10 @@
 const setCurrentId = 'gameobjects.setCurrentId';
-const setPosition = 'gameobjects.setPosition';
+const removeDrag = 'gameobjects.removeDrag';
+const setCell = 'gameobjects.setCell';
 
 
 export {
     setCurrentId,
-    setPosition
+    removeDrag,
+    setCell
 };

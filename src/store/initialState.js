@@ -2,6 +2,7 @@
 const initialState = {
     gameObjects:
     {drugId:null,
+     cell:null,   
     position:null},
     money:200,
     dragged:
