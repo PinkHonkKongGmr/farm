@@ -1,7 +1,7 @@
 import React from 'react'
 import uniqid from 'uniqid'
 import ReactDom from 'react-dom'
-
+import './common.scss' 
 
 
 class Drugger extends React.Component{
@@ -40,7 +40,7 @@ class Drugger extends React.Component{
 
     onDragEndHandler = () => {
         if(this.props.id === this.id && !this.state.dragged){
-            this.setState({dragged:true, status:`dragged_${this.props.name}`})
+            this.setState({dragged:true, status:`dragged dragged_${this.props.name}`})
             this.container = this.props.cell
             this.removeController()
             this.method()
@@ -49,23 +49,23 @@ class Drugger extends React.Component{
         }
     }
 
-    // onClickHandler =()=>{
-    //         this.props.harvester(this.state.harvest)
-    //         this.setState({harvest:0})
-    // }
+    harvest=()=>{
+        this.props.harvester(this.state.product)
+        this.setState({product:0})
+    }
 
     render(){ 
-       const classNames = `${this.props.name} ${this.state.status}`
+       const classNames = `${this.props.name} ${this.state.status} household`
+       const product = this.state.dragged ? this.props.product : ''  
        const value = this.state.dragged ? this.state.product : ''    
 
        const elemento = <div className ={classNames}
             draggable={!this.state.dragged} 
             onDragStart={this.onStart} 
             onDragEnd={this.onDragEndHandler} 
-            // onClick ={this.onClickHandler}
         >
 
-        <div>{this.props.product} {this.state.controlElements}{value}</div>
+        <div>{product} {this.state.controlElements}{value}</div>
         </div>
 
         

@@ -30,7 +30,7 @@ const mapReducer  = (state = initialState.dragged, action) =>{
     
         case types.removeCow:
             let newValueCow2 = state.cow
-            newValueCow--
+            newValueCow2--
             const incrementCow2 = {cow:newValueCow2}
             return { ...state, ...incrementCow2 }   
                 

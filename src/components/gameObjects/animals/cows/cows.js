@@ -1,20 +1,20 @@
 import React from 'react'
 import Drugger from '../../../../drugInheritance/drugger/index.js'
 import { Button } from 'reactstrap';
-import './chickens.scss' 
+import './cows.scss' 
 import { connect } from 'react-redux';
 import * as draggedActions from '../../../../store/dragged/actions';
 import * as generators from '../../../../store/generators/actions';
 
-class Chicken extends Drugger{
+class Cow extends Drugger{
     constructor(props){
         super(props)
-        this.method = this.props.addChick
-        this.removeMethod = this.props.removeChick
+        this.method = this.props.addCow
+        this.removeMethod = this.props.removeCow
         this.status  = `wait_for_drag wait_for_drag-${this.props.name}`
         this.state ={
-        controlElements:[<Button key = {this.props.ind} className="btn-info feed" onClick={this.feed}>Покормиц</Button>
-                        ,<Button key = {this.props.ind + 'i'} className="btn-info harvest" onClick={this.harvest}>Собрать</Button>],
+        controlElements:[<Button key = {this.props.ind} className="btn-info feed" onClick={this.feed}>Покормиц</Button>,
+                         <Button key = {this.props.ind + 'i'} className="btn-info harvest" onClick={this.harvest}>Собрать</Button>],
         status: this.status,
         product:0,
         food:0
@@ -31,14 +31,14 @@ class Chicken extends Drugger{
       });    
     }
     console.log(this.state.food)
-  },10000)
+  },20000)
  }
 
 
  takeAfood = () => {
   this.props.feed()
   this.setState((state) => {
-    return {food: state.food + 1 * 3}
+    return {food: state.food + 1 }
   });
  }
 
@@ -61,10 +61,10 @@ const mapStateToProps = state => {
   };
 
   const actionCreators = {
-    addChick: draggedActions.addChick,
-    removeChick: draggedActions.removeChick,
+    addCow: draggedActions.addCow,
+    removeCow: draggedActions.removeCow,
     feed: generators.feed,
-    harvester: generators.putEggs,
+    harvester: generators.milkCow,
   };
   
-  export default connect(mapStateToProps, actionCreators)(Chicken);
+  export default connect(mapStateToProps, actionCreators)(Cow);

@@ -11,7 +11,8 @@ class Cell extends React.Component{
         this.state ={
             droped:false,
             mountedId:null,
-            buttonSatus: 'hidden'
+            buttonSatus: 'hidden',
+            cellClass:'cell empty'
         }
         
         this.ref = React.createRef()
@@ -25,7 +26,7 @@ class Cell extends React.Component{
     deleteDrager =() =>{
         const  {removeDrag} = this.props
         removeDrag(this.state.mountedId)
-        this.setState({droped:false, buttonSatus:'hidden'})
+        this.setState({droped:false, buttonSatus:'hidden', cellClass:'cell empty'})
     }
 
     onDropHandler = (e)=>{
@@ -33,10 +34,13 @@ class Cell extends React.Component{
 
        const id =  e.dataTransfer
         .getData('id');
+
+        const cellClass =  e.dataTransfer
+        .getData('content');
        
 
         if (!this.state.droped){
-            this.setState({mountedId:id, droped:true,buttonSatus:'shown'})
+            this.setState({mountedId:id, droped:true,buttonSatus:'shown', cellClass: `cell ${cellClass}`})
             setCurrentId(id)
             setCell(this.ref.current)
         }
@@ -44,7 +48,7 @@ class Cell extends React.Component{
  
 
     render(){
-            return <div className='red' onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}>
+            return <div className= {this.state.cellClass} onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}>
                 <Button onClick={this.deleteDrager} className={this.state.buttonSatus}>Очистить, впизду</Button>    
             </div>
     }

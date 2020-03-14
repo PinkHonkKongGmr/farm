@@ -1,0 +1,25 @@
+.household{
+        width:100px;
+        height: 100px;
+        position: absolute;  
+        & .btn{
+            opacity: 0;
+        }
+}
+
+
+.dragged{
+    position: static;
+    & .btn{
+        position: absolute;
+        bottom: 95px;
+        opacity: 1;
+    }
+    & .feed{
+        left:0;
+    }
+    & .harvest{
+        right:0;      
+    }
+
+}

@@ -1,22 +1,31 @@
 
 
-.cell{
-    width: 50px;
-    height:50px;
-}
 
-.red{
-    background: crimson;
+
+.cell{
     position: relative;
 }
 
-.chicken_inside{
-    background: darkolivegreen;
+.empty{
+    background: url('pustpole.jpg');
+    background-size:cover;
 }
 
-.rye{
-    background: lightsalmon;
+.chicken_inside{
+    background: url('kur.jpg');
+    background-size:cover;
 }
+
+.rye_inside{
+    background: url('pshenichnoepole.jpg');
+    background-size:cover;
+}
+
+.cow_inside{
+    background: url('cow.jpg');
+    background-size:cover;
+}
+
 
 .btn{
     position: absolute;

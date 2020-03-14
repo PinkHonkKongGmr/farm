@@ -17,13 +17,13 @@ const mapReducer  = (state = initialState.generators, action) =>{
             return { ...state, ...dincrementHarvest } 
 
         case types.putEggs:
-            let putEgg = state.food
+            let putEgg = state.eggs
             putEgg = putEgg + action.payload.count
             const incremenEgg= {eggs:putEgg}
             return { ...state, ...incremenEgg } 
 
         case types.milkCow:
-            let milk = state.food
+            let milk = state.milk
             milk = milk + action.payload.count
             const incrementMilk = {milk}
             return { ...state, ...incrementMilk } 

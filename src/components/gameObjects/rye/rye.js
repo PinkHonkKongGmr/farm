@@ -11,7 +11,7 @@ class Rye extends Drugger{
         super(props)
         this.method = this.props.addRye
         this.removeMethod = this.props.removeRye
-        this.status = 'wait_for_drag-rye' 
+        this.status = `wait_for_drag-${this.props.name} `
         this.state ={
           controlElements:[<Button key = {this.props.ind} className="btn-info" onClick={this.harvest}>Пожать</Button>],
           status: this.status,
@@ -27,11 +27,6 @@ class Rye extends Drugger{
     },10000)
   }
 
-
-  harvest=()=>{
-    this.props.harvester(this.state.product)
-    this.setState({product:0})
-  }
 
 
  }
