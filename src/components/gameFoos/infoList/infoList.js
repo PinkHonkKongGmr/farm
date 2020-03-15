@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import './info.scss' 
-import { dispatch } from 'rxjs/internal/observable/range';
+import './info.scss'; 
+import GoldMine from '../../gameObjects/goldMine/goldMine.js'
 
 
 class infoList extends React.Component{
@@ -15,7 +15,7 @@ class infoList extends React.Component{
     render(){
         let i = 0;
         const names = ['Мухрю','Чикены','Рош','Еда', 'Всего ик', 'Надой']
-        const infoArray =[];
+        let infoArray =[];
         for (let key in this.props){
             if(key !== 'dispatch')
             {
@@ -24,8 +24,9 @@ class infoList extends React.Component{
                 i++;
             }
         }
+        infoArray = [...infoArray, <GoldMine key ="goldmine"></GoldMine>]
     
-        return <div>
+        return <div className = 'infolist'>
                     {infoArray}
                 </div>
     }

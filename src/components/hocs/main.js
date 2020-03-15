@@ -9,7 +9,7 @@ import Market from '../gameFoos/market/market.js';
 const MainHoc = ()=> 
     
     <div>
-        <FarmField count={9}></FarmField>
+        <FarmField></FarmField>
         <InfoList></InfoList>
         <Market></Market>
     </div>

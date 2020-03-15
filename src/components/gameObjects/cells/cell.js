@@ -1,6 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux';
 import * as actionGameObjects from '../../../store/gameObjects/actions';
+import * as trades from '../../../store/trades/actions';
 import { Button } from 'reactstrap';
 import './cells.scss'
 
@@ -45,11 +46,23 @@ class Cell extends React.Component{
             setCell(this.ref.current)
         }
     }
+
+    sold = () =>{
+        const {getProfit, removeCell, cellToRemoveOn} = this.props
+        getProfit(500);
+        removeCell(this.props.ind);
+        cellToRemoveOn();
+        
+
+
+    }
  
 
     render(){
+            const tradeButton = this.state.droped ? null : <Button onClick = {this.sold}>Продать землю</Button>
             return <div className= {this.state.cellClass} onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}>
-                <Button onClick={this.deleteDrager} className={this.state.buttonSatus}>Очистить, впизду</Button>    
+                <Button onClick={this.deleteDrager} className={this.state.buttonSatus}>Очистить, впизду</Button>  
+                {tradeButton } 
             </div>
     }
 }
@@ -65,7 +78,10 @@ const mapStateToProps = state => {
   const actionCreators = {
     setCurrentId: actionGameObjects.setCurrentId,
     setCell: actionGameObjects.setCell,
-    removeDrag: actionGameObjects.removeDrag
+    removeDrag: actionGameObjects.removeDrag,
+    getProfit: trades.incrementmoney,
+    removeCell: actionGameObjects.removeCell,
+    cellToRemoveOn: actionGameObjects.cellToRemoveOn
   };
   
   export default connect(mapStateToProps, actionCreators)(Cell);

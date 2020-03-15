@@ -25,12 +25,11 @@ class Chicken extends Drugger{
     
       this.interval = setInterval(()=>{
       if(this.state.food > 0){
-
+      console.log('state', this.props.state)
       this.setState((state) => {
         return {food: state.food -1, product:state.product + 1}
       });    
     }
-    console.log(this.state.food)
   },10000)
  }
 
@@ -55,7 +54,8 @@ const mapStateToProps = state => {
       id: state.gameObjects.drugId,
       cell: state.gameObjects.cell,
       idToRemove: state.gameObjects.idToRemove,
-      commonFood: state.generators.food
+      commonFood: state.generators.food,
+      state
     };
     return props;
   };

@@ -20,11 +20,57 @@ export const setCurrentId = drugId => {
   };
 
   export const setCell = cell => {
-    // const position = Object.assign({},pos)
+
     return {
       type: types.setCell,
       payload:{
         cell
       }
+    };
+  };
+
+  export const addCell = () => {
+    return {
+      type: types.addCell,
+      payload: {
+        cellToAdd: true
+      },
+    };
+  };
+
+  export const noCellsToAdd = () => {
+    return {
+      type: types.noCellsToAdd,
+      payload: {
+        cellToAdd: false
+      },
+    };
+  };
+
+  export const removeCell = (ind) => {
+    return {
+      type: types.removeCell,
+      payload: {
+        cellToRemoveInd: ind
+      },
+    };
+  };
+
+  export const cellToRemoveOn = () => {
+    return {
+      type: types.removeDrag,
+      payload: {
+        cellToRemove: true
+      },
+    };
+  };
+
+  export const cellToRemoveOff = () => {
+    return {
+      type: types.removeDrag,
+      payload: {
+        cellToRemove: false,
+        cellToRemoveInd: null
+      },
     };
   };
