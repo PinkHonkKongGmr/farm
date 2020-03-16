@@ -21,6 +21,7 @@ class Cow extends Drugger{
         food:0
        } 
        this.cost = 300;
+       this.sellPrice = 100;
     }
 
     generator = () =>{
@@ -67,7 +68,8 @@ const mapStateToProps = state => {
     removeCow: draggedActions.removeCow,
     feed: generators.feed,
     harvester: generators.milkCow,
-    spend: trades.discrementmoney
+    spend: trades.discrementmoney,
+    getProfit: trades.incrementmoney
   };
   
   export default connect(mapStateToProps, actionCreators)(Cow);

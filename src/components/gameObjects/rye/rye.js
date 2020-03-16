@@ -19,6 +19,7 @@ class Rye extends Drugger{
           product:0
          } 
          this.cost = 400
+         this.sellPrice = 0
     }
 
      generator = () =>{
@@ -50,7 +51,8 @@ const mapStateToProps = state => {
     addRye: draggedActions.addRye,
     removeRye: draggedActions.removeRye,
     harvester: generators.harvester,
-    spend: trades.discrementmoney
+    spend: trades.discrementmoney,
+    getProfit: trades.incrementmoney,
   };
   
   export default connect(mapStateToProps, actionCreators)(Rye);

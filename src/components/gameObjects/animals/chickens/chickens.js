@@ -20,7 +20,8 @@ class Chicken extends Drugger{
         product:0,
         food:0
        } 
-       this.cost = 90
+       this.cost = 90;
+       this.sellPrice = 40;
     }
 
 
@@ -68,7 +69,8 @@ const mapStateToProps = state => {
     removeChick: draggedActions.removeChick,
     feed: generators.feed,
     harvester: generators.putEggs,
-    spend: trades.discrementmoney
+    spend: trades.discrementmoney,
+    getProfit: trades.incrementmoney,
   };
   
   export default connect(mapStateToProps, actionCreators)(Chicken);

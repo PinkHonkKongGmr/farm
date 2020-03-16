@@ -17,12 +17,14 @@ class Drugger extends React.Component{
     }
 
     removeController =()=>{
+        const {getProfit} = this.props
         this.removeControllerInterval = setInterval(()=>{
             if(this.props.idToRemove===this.id){
                 this.id= uniqid()
                 this.container=this.homeContainer
                 this.setState({dragged:false, product:0, status:this.status})
                 clearInterval(this.interval, this.removeControllerInterval)
+                getProfit(this.sellPrice)
                 this.removeMethod()
                 
             }
