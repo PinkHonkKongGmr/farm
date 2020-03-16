@@ -3,7 +3,8 @@ import { connect } from 'react-redux';
 import * as actionGameObjects from '../../../store/gameObjects/actions';
 import * as trades from '../../../store/trades/actions';
 import { Button } from 'reactstrap';
-import './cells.scss'
+import './cells.scss';
+
 
 
 class Cell extends React.Component{

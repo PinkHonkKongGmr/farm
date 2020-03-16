@@ -16,12 +16,13 @@ class FarmField extends React.Component{
     }
 
     buyCell = () =>{
-        let newkye= uniqid()
+        if(this.props.cash > 999)
+       { let newkye= uniqid()
         const {addCell, spend} = this.props
         spend(1000);
         this.cells = [...this.cells,  <Cell key={newkye} ind={newkye}></Cell>]
         addCell()
-        this.props.noCellsToAdd();
+        this.props.noCellsToAdd();}
     }
 
     render(){
@@ -42,7 +43,8 @@ const mapStateToProps =state =>{
        cellCount: state.gameObjects.cellCount,
        cellToRemove: state.gameObjects.cellToRemove,
        cellToRemoveInd: state.gameObjects.cellToRemoveInd,
-       cellToAdd: state.gameObjects.cellToAdd
+       cellToAdd: state.gameObjects.cellToAdd,
+       cash: state.trades.money
    }
    return props
 }

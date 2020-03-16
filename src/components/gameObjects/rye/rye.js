@@ -5,6 +5,7 @@ import './rye.scss'
 import { connect } from 'react-redux';
 import * as draggedActions from '../../../store/dragged/actions';
 import * as generators from '../../../store/generators/actions';
+import * as trades from '../../../store/trades/actions';
 
 class Rye extends Drugger{
     constructor(props){
@@ -17,6 +18,7 @@ class Rye extends Drugger{
           status: this.status,
           product:0
          } 
+         this.cost = 400
     }
 
      generator = () =>{
@@ -48,6 +50,7 @@ const mapStateToProps = state => {
     addRye: draggedActions.addRye,
     removeRye: draggedActions.removeRye,
     harvester: generators.harvester,
+    spend: trades.discrementmoney
   };
   
   export default connect(mapStateToProps, actionCreators)(Rye);

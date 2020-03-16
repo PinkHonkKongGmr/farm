@@ -29,17 +29,28 @@ class Drugger extends React.Component{
         })
     }
 
+    dealOpportunity = () => this.props.gold < this.cost ? false : true
+
+    
+
+    deal = () => {
+      const {spend} = this.props
+        spend(this.cost);
+    }
+
 
     onStart= (e)=>{
-        e.dataTransfer
+        if(this.dealOpportunity())
+        {e.dataTransfer
         .setData('id', this.id)
         e.dataTransfer
         .setData('content', `${this.props.name}_inside`);
-        
+        }
     }
 
     onDragEndHandler = () => {
         if(this.props.id === this.id && !this.state.dragged){
+            this.deal()
             this.setState({dragged:true, status:`dragged dragged_${this.props.name}`})
             this.container = this.props.cell
             this.removeController()

@@ -3,7 +3,8 @@ import Chicken from '../../gameObjects/animals/chickens/chickens.js';
 import Cow from '../../gameObjects/animals/cows/cows.js';
 import Rye from '../../gameObjects/rye/rye.js'
 import arrayCreator from '../../../helpers/arrayCreator.js'
-
+import Trades from '../trades/trades.js'
+import Curs from '../curs/curs.js'
 
 class Market extends React.Component{
 
@@ -42,8 +43,12 @@ class Market extends React.Component{
                     {chickens}
                     {ryes}
                     {cows}
+                    <Curs></Curs>
+                    <Trades></Trades>
         </div>
     }
 }
+
+
 
 export default Market

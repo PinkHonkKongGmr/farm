@@ -1,0 +1,31 @@
+.sellBtn_wrapper{
+    display: flex;
+    flex-direction: column;
+    padding-left: 32px;
+    position: absolute;
+    top:490px;
+}
+
+.sellBtn{
+    position: static;
+    width:160px;
+    margin-bottom: 14px;
+}
+
+.btnEggs{
+    border: none!important;
+    background-color: orange!important;
+}
+
+.btnMilk{
+    border: none!important;
+    background-color: rgb(23, 117, 35)!important;
+}
+
+.btnNoth{
+    font-weight: 900!important;
+    color: goldenrod!important;
+    font-size: 20px!important;
+    background: linear-gradient(to top left, powderblue, pink)!important;
+    border: 3px solid goldenrod!important;
+}

@@ -36,3 +36,16 @@ export const harvester = (count) => {
       },
     };
   };
+
+  export const resetEggs = () => {
+    return {
+      type: types.resetEggs
+    };
+  };
+
+  export const resetMilk = () => {
+    return {
+      type: types.resetMilk
+    };
+  };
+

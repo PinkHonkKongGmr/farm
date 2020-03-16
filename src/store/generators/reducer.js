@@ -28,6 +28,14 @@ const mapReducer  = (state = initialState.generators, action) =>{
             const incrementMilk = {milk}
             return { ...state, ...incrementMilk } 
 
+         case types.resetEggs:
+            const nullEgg= {eggs:0}
+            return { ...state, ...nullEgg } 
+    
+        case types.resetMilk:
+            const nullMilk = {milk:0}
+            return { ...state, ...nullMilk } 
+
         default:
             return state
     }

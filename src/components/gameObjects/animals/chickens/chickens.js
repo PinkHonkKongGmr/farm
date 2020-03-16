@@ -5,6 +5,7 @@ import './chickens.scss'
 import { connect } from 'react-redux';
 import * as draggedActions from '../../../../store/dragged/actions';
 import * as generators from '../../../../store/generators/actions';
+import * as trades from '../../../../store/trades/actions';
 
 class Chicken extends Drugger{
     constructor(props){
@@ -19,7 +20,9 @@ class Chicken extends Drugger{
         product:0,
         food:0
        } 
+       this.cost = 90
     }
+
 
     generator = () =>{
     
@@ -32,6 +35,7 @@ class Chicken extends Drugger{
     }
   },10000)
  }
+
 
 
  takeAfood = () => {
@@ -55,7 +59,6 @@ const mapStateToProps = state => {
       cell: state.gameObjects.cell,
       idToRemove: state.gameObjects.idToRemove,
       commonFood: state.generators.food,
-      state
     };
     return props;
   };
@@ -65,6 +68,7 @@ const mapStateToProps = state => {
     removeChick: draggedActions.removeChick,
     feed: generators.feed,
     harvester: generators.putEggs,
+    spend: trades.discrementmoney
   };
   
   export default connect(mapStateToProps, actionCreators)(Chicken);
