@@ -31,7 +31,7 @@ class Drugger extends React.Component{
         })
     }
 
-    dealOpportunity = () => this.props.gold < this.cost ? false : true
+    
 
     
 
@@ -42,12 +42,10 @@ class Drugger extends React.Component{
 
 
     onStart= (e)=>{
-        if(this.dealOpportunity())
-        {e.dataTransfer
+        e.dataTransfer
         .setData('id', this.id)
         e.dataTransfer
         .setData('content', `${this.props.name}_inside`);
-        }
     }
 
     onDragEndHandler = () => {
@@ -68,7 +66,9 @@ class Drugger extends React.Component{
     }
 
     render(){ 
-       const classNames = `${this.props.name} ${this.state.status} household`
+        
+       const tosee = this.dealOpportunity()? 'visible' : 'none'
+       const classNames = `${this.props.name} ${this.state.status} household ${tosee}`
        const product = this.state.dragged ? this.props.product : ''  
        const value = this.state.dragged ? this.state.product : ''    
 

@@ -8,6 +8,7 @@ import './trades.scss'
 class Trades extends React.Component{
     constructor(props){
         super(props)
+
     }
 
     soldEggs =() =>{
@@ -25,13 +26,13 @@ class Trades extends React.Component{
         return <div className="sellBtn_wrapper">
             <Button className ='sellBtn btnEggs' onClick={this.soldEggs}>Продать ики </Button>
             <Button className ='sellBtn btnMilk' onClick={this.soldMilk}>Продать молоко</Button>
-            <Button className ='sellBtn btnNoth'>Ничего не продавать</Button>
         </div>
     }
 }
 
 const mapStateToProps = state => {
     const props = {
+        money: state.trades.money,
         eggs: state.generators.eggs,
         milk: state.generators.milk,
     };

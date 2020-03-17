@@ -24,6 +24,8 @@ class Cow extends Drugger{
        this.sellPrice = 100;
     }
 
+    dealOpportunity = () => this.props.money < this.cost ? false : true
+
     generator = () =>{
     
       this.interval = setInterval(()=>{
@@ -58,7 +60,8 @@ const mapStateToProps = state => {
       id: state.gameObjects.drugId,
       cell: state.gameObjects.cell,
       idToRemove: state.gameObjects.idToRemove,
-      commonFood: state.generators.food
+      commonFood: state.generators.food,
+      money: state.trades.money
     };
     return props;
   };

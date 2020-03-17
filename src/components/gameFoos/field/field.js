@@ -33,7 +33,7 @@ class FarmField extends React.Component{
         }   
         this.props.cellToRemoveOff()
         return <div className='field'>{this.cells}
-            <Button onClick ={this.buyCell}>А не прикупить ли мне земли?</Button>
+            <Button onClick ={this.buyCell} className = "buyLand">А не прикупить ли мне земли?</Button>
         </div>
     }
 }

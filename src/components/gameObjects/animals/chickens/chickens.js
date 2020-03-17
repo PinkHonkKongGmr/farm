@@ -24,6 +24,7 @@ class Chicken extends Drugger{
        this.sellPrice = 40;
     }
 
+    dealOpportunity = () => this.props.money < this.cost ? false : true 
 
     generator = () =>{
     
@@ -60,6 +61,7 @@ const mapStateToProps = state => {
       cell: state.gameObjects.cell,
       idToRemove: state.gameObjects.idToRemove,
       commonFood: state.generators.food,
+      money: state.trades.money
     };
     return props;
   };

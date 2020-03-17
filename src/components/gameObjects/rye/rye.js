@@ -22,6 +22,8 @@ class Rye extends Drugger{
          this.sellPrice = 0
     }
 
+    dealOpportunity = () => this.props.money < this.cost ? false : true
+
      generator = () =>{
         this.interval = setInterval(()=>{
         if(this.state.product===0){
@@ -40,7 +42,8 @@ const mapStateToProps = state => {
     const props = {
       id: state.gameObjects.drugId,
       cell: state.gameObjects.cell,
-      idToRemove: state.gameObjects.idToRemove
+      idToRemove: state.gameObjects.idToRemove,
+      money: state.trades.money
     };
     return props;
   };
