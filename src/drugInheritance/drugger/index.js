@@ -31,8 +31,24 @@ class Drugger extends React.Component{
         })
     }
 
-    
+    generator = () =>{
+        let countDown = 0 
+        this.interval = setInterval(()=>{
+        if(this.state.food > 0){
+        countDown ++;
+        if(countDown === this.timeToGenerate)
+        {countDown = 0;   
+        this.stateActions()
+        this.sumProductUp();
+        this.upgrade()
+        this.control()
+      };
+      }
+    },1000)
+   }
 
+    
+   sumProductUp = () => this.sumProduct = this.sumProduct + 1
     
 
     deal = () => {

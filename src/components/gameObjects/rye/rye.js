@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import * as draggedActions from '../../../store/dragged/actions';
 import * as generators from '../../../store/generators/actions';
 import * as trades from '../../../store/trades/actions';
+import  {upgrade} from '../../../conts/upgrade.js';
+import  {sellPrice} from '../../../conts/sold.js';
+import  {buyPrice} from '../../../conts/buy.js';
 
 class Rye extends Drugger{
     constructor(props){
@@ -18,18 +21,22 @@ class Rye extends Drugger{
           status: this.status,
           product:0
          } 
-         this.cost = 400
-         this.sellPrice = 0
+         this.cost = buyPrice.rye
+         this.sellPrice = sellPrice.rye
     }
 
     dealOpportunity = () => this.props.money < this.cost ? false : true
 
      generator = () =>{
+        let countDown = 0 
         this.interval = setInterval(()=>{
         if(this.state.product===0){
-        this.setState({product:1})
+          countDown++
+           if(countDown === upgrade.rye.timeToGenerate)
+             {this.setState({product:1})
+              countDown = 0}
       }
-    },10000)
+    },1000)
   }
 
 

@@ -18,30 +18,12 @@ class GoldMine extends React.Component{
         this.max = this.props.money
         this.state ={
             profitPerTime:0,
-            money:1200,
+            money:this.props.money,
             best:0
         }
     }
 
-    // componentDidMount (){
-    //     setInterval(
-    //         ()=>{
-    //             if(this.state.max < this.props.money)
-    //             {let max = this.props.money;
-    //             this.setState({max})}},
-    //         1000)
-
-    //     setInterval(
-    //          ()=>{
-    //             this.tenSecondsProfit = this.props.money - this.privTSP 
-    //             this.privTSP = this.tenSecondsProfit
-    //             if(this.tenSecondsProfit > this.state.maxPerTenMinutes){
-    //                 this.setState({maxPerTenMinutes:this.tenSecondsProfit})
-    //             }
-    //         },
-    //          10000)   
-    // }
-
+    
 
 
     declarate =() =>{
@@ -59,14 +41,15 @@ class GoldMine extends React.Component{
 
 
     render(){
+        const profitPerTime = this.state.profitPerTime === -Infinity ? 'беда с бошкой' : this.state.profitPerTime.toFixed(2)
         this.best = this.best > this.state.profitPerTime ? this.best : this.state.profitPerTime.toFixed(2)
         this.max = this.max > this.props.money ? this.max : this.props.money
         let datClass = this.props.money > 0 ? 'green val' : 'red val'
         return <div className = "value">
-            Голда: <span className = {datClass}>{this.props.money}</span>
+            Голда: <span className = {datClass}>{this.props.money.toFixed(0)}</span>
             <div className ='statistic'>
                 <div className = 'max'>Максимальный баланс: {this.max}</div>
-                <div className = 'profit'>Заработано\мин: {this.state.profitPerTime.toFixed(2)}</div>
+                <div className = 'profit'>Заработано\мин: {profitPerTime}</div>
                 <div className = 'best'>лучший показатель: {this.best}</div>
                 <Button className ='btnDeclr' onClick={this.declarate}>Декларировать</Button>
             </div>

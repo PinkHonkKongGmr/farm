@@ -6,6 +6,9 @@ import { connect } from 'react-redux';
 import * as draggedActions from '../../../../store/dragged/actions';
 import * as generators from '../../../../store/generators/actions';
 import * as trades from '../../../../store/trades/actions';
+import  {sellPrice} from '../../../../conts/sold.js';
+import  {buyPrice} from '../../../../conts/buy.js';
+import  {upgrade} from '../../../../conts/upgrade.js';
 
 class Cow extends Drugger{
     constructor(props){
@@ -20,31 +23,40 @@ class Cow extends Drugger{
         product:0,
         food:0
        } 
-       this.cost = 300;
-       this.sellPrice = 100;
+       this.cost = buyPrice.cow;
+       this.sellPrice = sellPrice.cow;
+       this.plus = 0;
+       this.sumProduct = 0;
+       this.timeToGenerate = upgrade.cow.timeToGenerate
     }
 
     dealOpportunity = () => this.props.money < this.cost ? false : true
 
-    generator = () =>{
+    sumProductUp = () => this.sumProduct = this.sumProduct + 1 + this.plus
     
-      this.interval = setInterval(()=>{
-      if(this.state.food > 0){
-
-      this.setState((state) => {
-        return {food: state.food -1, product:state.product + 1}
-      });    
+    upgrade = () => {
+      if (this.sumProduct > upgrade.cow.threshold ||  this.sumProduct === upgrade.cow.threshold)
+          { this.plus = this.plus + upgrade.cow.plus
+            this.sumProduct = 0
+        }
     }
-    console.log(this.state.food)
-  },20000)
- }
+                   
+    
+    control = () => this.plus = this.plus > upgrade.cow.limit ? upgrade.cow.limit : this.plus              
+
+    stateActions = () => {
+      this.setState((state) => {
+        return {food: state.food -1, product:state.product + 1 + this.plus}
+      })
+    }
 
 
- takeAfood = () => {
-  this.props.feed()
-  this.setState((state) => {
-    return {food: state.food + 1 }
-  });
+
+    takeAfood = () => {
+      this.props.feed()
+      this.setState((state) => {
+      return {food: state.food + 1 }
+    });
  }
 
     feed =  () =>{

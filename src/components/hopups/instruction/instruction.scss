@@ -1,0 +1,46 @@
+.popup{
+    position: fixed;
+    width:100%;
+    height: 100vh;
+    top:0;
+    background: rgba($color: rgb(208, 232, 255), $alpha: 0.95);
+    z-index: 9;
+}
+
+.instruction{
+    width:600px;
+    text-align: center;
+    margin:20px auto;
+    overflow: auto;
+    & .btn{
+        position: static;
+        margin-top: 23px;
+        margin-left: 12px;
+    }
+}
+
+.instruction .nextBtn_4, .instruction .prevBtn_1{
+    display: none;
+}
+
+.clear{
+    top:20px;
+    right:30px;
+    height:40px;
+    width: 130px;
+
+}
+
+.hide{
+    background: none;
+    margin-top: calc(100vh - 100px);
+    z-index: 0;
+    width: 210px;
+    height: 110px;
+    & .instruction{
+        font-size: 0;
+        & .btn{
+            display: none;
+        }
+    }
+}
