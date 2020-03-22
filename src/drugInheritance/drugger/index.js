@@ -25,7 +25,7 @@ class Drugger extends React.Component{
             if(this.props.idToRemove === this.id){
                 this.id= uniqid()
                 this.container=this.homeContainer
-                this.setState({dragged:false, product:0, status:this.status})
+                this.setState({dragged:false, product:0, status:this.status, food:0})
                 clearInterval(this.interval, this.removeControllerInterval)
                 getProfit(this.sellPrice)
                 this.removeMethod()
