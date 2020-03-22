@@ -6,9 +6,11 @@ import { connect } from 'react-redux';
 import * as draggedActions from '../../../../store/dragged/actions';
 import * as generators from '../../../../store/generators/actions';
 import * as trades from '../../../../store/trades/actions';
-import  {sellPrice} from '../../../../conts/sold.js';
-import  {buyPrice} from '../../../../conts/buy.js';
-import  {upgrade} from '../../../../conts/upgrade.js';
+import  {sellPrice} from '../../../../consts/sold.js';
+import  {buyPrice} from '../../../../consts/buy.js';
+import  {upgrade} from '../../../../consts/upgrade.js';
+import  {buttontext} from '../../../../consts/buttontext.js';
+import  {names} from '../../../../consts/names.js';
 
 class Chicken extends Drugger{
     constructor(props){
@@ -17,8 +19,8 @@ class Chicken extends Drugger{
         this.removeMethod = this.props.removeChick
         this.status  = `wait_for_drag wait_for_drag-${this.props.name}`
         this.state ={
-        controlElements:[<Button key = {this.props.ind} className="btn-info feed" onClick={this.feed}>Покормиц</Button>
-                        ,<Button key = {this.props.ind + 'i'} className="btn-info harvest" onClick={this.harvest}>Собрать</Button>],
+        controlElements:[<Button key = {this.props.ind} className="btn-info feed" onClick={this.feed}>{buttontext.ru.feed}</Button>
+                        ,<Button key = {this.props.ind + 'i'} className="btn-info harvest" onClick={this.harvest}>{buttontext.ru.pick}</Button>],
         status: this.status,
         product:0,
         food:0
@@ -27,6 +29,7 @@ class Chicken extends Drugger{
        this.timeToGenerate = upgrade.chicken.timeToGenerateStart
        this.cost = buyPrice.chicken;
        this.sellPrice = sellPrice.chicken;
+       this.contentLocal = names.ru.chicken
     }
 
     dealOpportunity = () => this.props.money < this.cost ? false : true 

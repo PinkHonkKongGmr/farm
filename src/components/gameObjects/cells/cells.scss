@@ -14,16 +14,26 @@
 .chicken_inside{
     background: url('kur.jpg');
     background-size:cover;
+    & .shown{
+        transform: translateX(calc(50% - 14px));
+    }
+   
 }
 
 .rye_inside{
     background: url('pshenichnoepole.jpg');
     background-size:cover;
+    & .shown{
+        transform: translateX(calc(50% - 45px));
+    }
 }
 
 .cow_inside{
     background: url('cow.jpg');
     background-size:cover;
+    & .shown{
+        transform: translateX(calc(50% - 21px));
+    }
 }
 
 
@@ -34,6 +44,10 @@
 
 .hidden{
     opacity: 0;
+}
+
+.sell__cell{
+    transform: translateX(calc(50% - 25px));
 }
 
 .shown{

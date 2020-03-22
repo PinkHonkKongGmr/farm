@@ -13,16 +13,17 @@
 
 .dragged{
     position: static;
+    display: block;
     & .btn{
         position: absolute;
         bottom: 95px;
         opacity: 1;
     }
     & .feed{
-        left:0;
+        left:12px;
     }
     & .harvest{
-        right:0;      
+        right:12px;      
     }
 
 }

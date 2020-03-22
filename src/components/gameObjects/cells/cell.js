@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import * as actionGameObjects from '../../../store/gameObjects/actions';
 import * as trades from '../../../store/trades/actions';
+import  {buttontext} from '../../../consts/buttontext.js';
 import { Button } from 'reactstrap';
 import './cells.scss';
 
@@ -16,7 +17,8 @@ class Cell extends React.Component{
             buttonSatus: 'hidden',
             cellClass:'cell empty'
         }
-        
+        this.content = null
+        this.contentLocal = null
         this.ref = React.createRef()
     }
 
@@ -37,9 +39,13 @@ class Cell extends React.Component{
        const id =  e.dataTransfer
         .getData('id');
 
-        const cellClass =  e.dataTransfer
+        this.content =  e.dataTransfer
         .getData('content');
+
+        this.contentLocal =  e.dataTransfer
+        .getData('contentLocal');
        
+        const cellClass = `${this.content}`
 
         if (!this.state.droped){
             this.setState({mountedId:id, droped:true,buttonSatus:'shown', cellClass: `cell ${cellClass}`})
@@ -60,9 +66,11 @@ class Cell extends React.Component{
  
 
     render(){
-            const tradeButton = this.state.droped ? null : <Button onClick = {this.sold}>Продать землю</Button>
+            const tradeButton = this.state.droped ? null : <Button className = 'sell__cell' onClick = {this.sold}>{buttontext.ru.soldLand}</Button>
+            const soldContent = this.state.cellClass.indexOf('rye') === -1 ? `${buttontext.ru.soldContent} ${this.contentLocal}`
+            : `${buttontext.ru.deleteRye}`
             return <div className= {this.state.cellClass} onDrop = {this.onDropHandler} onDragOver = {this.onDragOverHandler} ref ={this.ref}>
-                <Button onClick={this.deleteDrager} className={this.state.buttonSatus}>Очистить, впизду</Button>  
+                <Button onClick={this.deleteDrager} className={this.state.buttonSatus}>{soldContent}</Button>  
                 {tradeButton } 
             </div>
     }

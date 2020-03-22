@@ -3,6 +3,9 @@ import {connect} from 'react-redux'
 import { Button } from 'reactstrap';
 import * as trades from '../../../store/trades/actions';
 import './goldMine.scss' 
+import  {buttontext} from '../../../consts/buttontext.js';
+import  {warnings} from '../../../consts/warnings.js';
+import  {indicators} from '../../../consts/indicators.js';
 
 
 
@@ -41,17 +44,17 @@ class GoldMine extends React.Component{
 
 
     render(){
-        const profitPerTime = this.state.profitPerTime === -Infinity ? 'беда с бошкой' : this.state.profitPerTime.toFixed(2)
+        const profitPerTime = this.state.profitPerTime === -Infinity ? warnings.ru.infinity : this.state.profitPerTime.toFixed(2)
         this.best = this.best > this.state.profitPerTime ? this.best : this.state.profitPerTime.toFixed(2)
         this.max = this.max > this.props.money ? this.max : this.props.money
         let datClass = this.props.money > 0 ? 'green val' : 'red val'
         return <div className = "value">
             Голда: <span className = {datClass}>{this.props.money.toFixed(0)}</span>
             <div className ='statistic'>
-                <div className = 'max'>Максимальный баланс: {this.max}</div>
-                <div className = 'profit'>Заработано\мин: {profitPerTime}</div>
-                <div className = 'best'>лучший показатель: {this.best}</div>
-                <Button className ='btnDeclr' onClick={this.declarate}>Декларировать</Button>
+                <div className = 'max'>{indicators.ru.max}: {this.max}</div>
+                <div className = 'profit'>{indicators.ru.permin}: {profitPerTime}</div>
+                <div className = 'best'>{indicators.ru.best}: {this.best}</div>
+                <Button className ='btnDeclr' onClick={this.declarate}>{buttontext.ru.declarate}</Button>
             </div>
         </div>
     }

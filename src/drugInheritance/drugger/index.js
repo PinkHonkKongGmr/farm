@@ -14,6 +14,7 @@ class Drugger extends React.Component{
         this.method = null;
         this.removeMethod = null;
         this.state ={dragged:false}
+        this.contentLocal = null;
     }
 
     removeController =()=>{
@@ -60,8 +61,12 @@ class Drugger extends React.Component{
     onStart= (e)=>{
         e.dataTransfer
         .setData('id', this.id)
+        
         e.dataTransfer
         .setData('content', `${this.props.name}_inside`);
+
+        e.dataTransfer
+        .setData('contentLocal', `${this.contentLocal}`);
     }
 
     onDragEndHandler = () => {
@@ -88,7 +93,7 @@ class Drugger extends React.Component{
        const product = this.state.dragged ? this.props.product : ''  
        const value = this.state.dragged ? this.state.product : ''    
 
-       const elemento = <div className ={classNames}
+       const element = <div className ={classNames}
             draggable={!this.state.dragged} 
             onDragStart={this.onStart} 
             onDragEnd={this.onDragEndHandler} 
@@ -98,7 +103,7 @@ class Drugger extends React.Component{
         </div>
 
         
-        return ReactDom.createPortal(elemento, this.container)
+        return ReactDom.createPortal(element, this.container)
     }
 
 }

@@ -6,9 +6,11 @@ import { connect } from 'react-redux';
 import * as draggedActions from '../../../store/dragged/actions';
 import * as generators from '../../../store/generators/actions';
 import * as trades from '../../../store/trades/actions';
-import  {upgrade} from '../../../conts/upgrade.js';
-import  {sellPrice} from '../../../conts/sold.js';
-import  {buyPrice} from '../../../conts/buy.js';
+import  {upgrade} from '../../../consts/upgrade.js';
+import  {sellPrice} from '../../../consts/sold.js';
+import  {buyPrice} from '../../../consts/buy.js';
+import  {buttontext} from '../../../consts/buttontext.js';
+import  {names} from '../../../consts/names.js';
 
 class Rye extends Drugger{
     constructor(props){
@@ -17,12 +19,13 @@ class Rye extends Drugger{
         this.removeMethod = this.props.removeRye
         this.status = `wait_for_drag-${this.props.name} `
         this.state ={
-          controlElements:[<Button key = {this.props.ind} className="btn-info" onClick={this.harvest}>Пожать</Button>],
+          controlElements:[<Button key = {this.props.ind} className="btn-info" onClick={this.harvest}>{buttontext.ru.harvest}</Button>],
           status: this.status,
           product:0
          } 
          this.cost = buyPrice.rye
          this.sellPrice = sellPrice.rye
+         this.contentLocal = names.ru.rye
     }
 
     dealOpportunity = () => this.props.money < this.cost ? false : true

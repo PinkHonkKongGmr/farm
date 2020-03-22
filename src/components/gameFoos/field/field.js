@@ -6,6 +6,7 @@ import { Button } from 'reactstrap';
 import {connect} from 'react-redux'
 import * as actionGameObjects from '../../../store/gameObjects/actions';
 import * as trades from '../../../store/trades/actions';
+import  {buttontext} from '../../../consts/buttontext.js';
 import uniqid from 'uniqid'
 
 
@@ -17,12 +18,13 @@ class FarmField extends React.Component{
 
     buyCell = () =>{
         if(this.props.cash > 999)
-       { let newkye= uniqid()
-        const {addCell, spend} = this.props
-        spend(1000);
-        this.cells = [...this.cells,  <Cell key={newkye} ind={newkye}></Cell>]
-        addCell()
-        this.props.noCellsToAdd();}
+        {let newkye= uniqid()
+            const {addCell, spend} = this.props
+            spend(1000);
+            this.cells = [...this.cells,  <Cell key={newkye} ind={newkye}></Cell>]
+            addCell()
+            this.props.noCellsToAdd();
+        }
     }
 
     render(){
@@ -33,7 +35,7 @@ class FarmField extends React.Component{
         }   
         this.props.cellToRemoveOff()
         return <div className='field'>{this.cells}
-            <Button onClick ={this.buyCell} className = "buyLand">А не прикупить ли мне земли?</Button>
+            <Button onClick ={this.buyCell} className = "buyLand">{buttontext.ru.buyLand}</Button>
         </div>
     }
 }

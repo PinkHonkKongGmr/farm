@@ -5,6 +5,8 @@ import Rye from '../../gameObjects/rye/rye.js'
 import arrayCreator from '../../../helpers/arrayCreator.js'
 import Trades from '../trades/trades.js'
 import Curs from '../curs/curs.js'
+import  {product} from '../../../consts/product.js';
+
 
 class Market extends React.Component{
 
@@ -20,7 +22,7 @@ class Market extends React.Component{
 
             ind = {ind}
             name='chicken' 
-            product = 'Ики'
+            product = {product.ru.eggs}
             >
             </Chicken>)
 
@@ -28,14 +30,14 @@ class Market extends React.Component{
             const ryes = arrayCreator(64).map((el,ind)=><Rye key={ind}
             ind = {ind}
             name='rye' 
-            product = 'Пишша'
+            product = {product.ru.food}
             >
             </Rye>)
 
             const cows = arrayCreator(64).map((el,ind)=><Cow key={ind}
             ind = {ind}
             name='cow' 
-            product = 'Милк'
+            product = {product.ru.milk}
              >
             </Cow>)
 

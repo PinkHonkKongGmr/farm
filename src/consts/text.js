@@ -1,6 +1,7 @@
  import React from 'react'
  
  const instruction ={
+   ru:{
     titleRu:'Инструкция',
     'rules1':<div>
         Итак, правила!
@@ -85,6 +86,7 @@
          Добавка суммируется с прокачкой
          <br></br>
      </div>
+   }
         
 }
 

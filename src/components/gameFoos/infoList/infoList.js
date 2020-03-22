@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux';
 import './info.scss'; 
 import GoldMine from '../../gameObjects/goldMine/goldMine.js'
+import  {indicators} from '../../../consts/indicators.js';
 
 
 class infoList extends React.Component{
@@ -14,13 +15,13 @@ class infoList extends React.Component{
  
     render(){
         let i = 0;
-        const names = ['Мухрю','Чикены','Рош','Еда', 'Всего ик', 'Надой']
+        const list = indicators.ru.list
         let infoArray =[];
         for (let key in this.props){
             if(key !== 'dispatch')
             {
                 const nameOfClass = this.props[key] > 0 ? 'val green' : 'val red'
-                infoArray.push(<div className='value' key ={i}>{names[i]}: <span className={nameOfClass}>{this.props[key]}</span></div>)
+                infoArray.push(<div className='value' key ={i}>{list[i]}: <span className={nameOfClass}>{this.props[key]}</span></div>)
                 i++;
             }
         }

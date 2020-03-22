@@ -2,6 +2,7 @@ import React from 'react'
 import { connect } from 'react-redux'
 import * as generators from '../../../store/generators/actions';
 import * as trades from '../../../store/trades/actions';
+import  {buttontext} from '../../../consts/buttontext.js';
 import { Button } from 'reactstrap';
 import './trades.scss'
 
@@ -24,8 +25,8 @@ class Trades extends React.Component{
 
     render (){
         return <div className="sellBtn_wrapper">
-            <Button className ='sellBtn btnEggs' onClick={this.soldEggs}>Продать ики </Button>
-            <Button className ='sellBtn btnMilk' onClick={this.soldMilk}>Продать молоко</Button>
+            <Button className ='sellBtn btnEggs' onClick={this.soldEggs}>{buttontext.ru.soldEggs} </Button>
+    <Button className ='sellBtn btnMilk' onClick={this.soldMilk}>{buttontext.ru.soldMilk}</Button>
         </div>
     }
 }
