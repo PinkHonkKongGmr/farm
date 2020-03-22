@@ -37,7 +37,7 @@ class Drugger extends React.Component{
     foodStatusController = () => {
         console.log('this.state.food', this.foodControlRef.current)
         this.state.food > 0 ? this.foodControlRef.current.style.backgroundColor = '#b2ec5d' :
-        this.foodControlRef.current.style.backgroundColor = 'red'
+        this.foodControlRef.current.style.backgroundColor = 'rgb(253, 71, 71)'
     }
     
     generateStatusController = (q, proc) => {
@@ -60,7 +60,7 @@ class Drugger extends React.Component{
         this.generateControlRef.current.style.height = `${proceed}%`
       }
 
-      colorBack = () => this.generateControlRef.current.style.backgroundColor = 'red'
+      colorBack = () => this.generateControlRef.current.style.backgroundColor = 'rgb(253, 71, 71)'
 
     generator = () =>{
         let countDown = 0 
