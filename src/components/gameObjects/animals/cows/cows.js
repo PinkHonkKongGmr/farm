@@ -11,6 +11,7 @@ import  {buyPrice} from '../../../../consts/buy.js';
 import  {upgrade} from '../../../../consts/upgrade.js';
 import  {buttontext} from '../../../../consts/buttontext.js';
 import  {names} from '../../../../consts/names.js';
+import uniqid from 'uniqid'
 
 class Cow extends Drugger{
     constructor(props){
@@ -18,9 +19,13 @@ class Cow extends Drugger{
         this.method = this.props.addCow
         this.removeMethod = this.props.removeCow
         this.status  = `wait_for_drag wait_for_drag-${this.props.name}`
+        this.generateControlRef = React.createRef()
+        this.foodControlRef = React.createRef();
+        this.controlElements = [<Button key = {uniqid()} className="btn-info feed" onClick={this.feed}>{buttontext.ru.feed}</Button>,
+                         <Button key = {uniqid()} className="btn-info harvest" onClick={this.harvest}>{buttontext.ru.milk}</Button>
+                         ,<div className = "food__indicator" key = {uniqid()} ref = {this.foodControlRef}></div>
+                         ,<div className = "generate__indicator" key = {uniqid()}><div className = "scale" ref = {this.generateControlRef}></div></div>];
         this.state ={
-        controlElements:[<Button key = {this.props.ind} className="btn-info feed" onClick={this.feed}>{buttontext.ru.feed}</Button>,
-                         <Button key = {this.props.ind + 'i'} className="btn-info harvest" onClick={this.harvest}>{buttontext.ru.milk}</Button>],
         status: this.status,
         product:0,
         food:0
@@ -31,6 +36,7 @@ class Cow extends Drugger{
        this.sumProduct = 0;
        this.timeToGenerate = upgrade.cow.timeToGenerate
        this.contentLocal = names.ru.cow
+       this.timeToGenerate = upgrade.cow.timeToGenerate
     }
 
     dealOpportunity = () => this.props.money < this.cost ? false : true

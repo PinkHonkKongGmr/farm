@@ -11,6 +11,7 @@ import  {sellPrice} from '../../../consts/sold.js';
 import  {buyPrice} from '../../../consts/buy.js';
 import  {buttontext} from '../../../consts/buttontext.js';
 import  {names} from '../../../consts/names.js';
+import uniqid from 'uniqid'
 
 class Rye extends Drugger{
     constructor(props){
@@ -19,10 +20,12 @@ class Rye extends Drugger{
         this.removeMethod = this.props.removeRye
         this.status = `wait_for_drag-${this.props.name} `
         this.state ={
-          controlElements:[<Button key = {this.props.ind} className="btn-info" onClick={this.harvest}>{buttontext.ru.harvest}</Button>],
           status: this.status,
           product:0
          } 
+         this.generateControlRef = React.createRef()
+         this.controlElements =[<Button key = {this.props.ind} className="btn-info" onClick={this.harvest}>{buttontext.ru.harvest}</Button>
+         ,<div className = "generate__indicator" key = {uniqid()}><div div className = "scale" ref = {this.generateControlRef}></div></div>]
          this.cost = buyPrice.rye
          this.sellPrice = sellPrice.rye
          this.contentLocal = names.ru.rye
@@ -30,20 +33,21 @@ class Rye extends Drugger{
 
     dealOpportunity = () => this.props.money < this.cost ? false : true
 
+
      generator = () =>{
         let countDown = 0 
         this.interval = setInterval(()=>{
+        let ttg = upgrade.rye.timeToGenerate   
         if(this.state.product===0){
           countDown++
-           if(countDown === upgrade.rye.timeToGenerate)
+          const q = 1/20 * ttg
+          this.generateStatusController(q, countDown)
+           if(countDown === ttg * 20)
              {this.setState({product:1})
               countDown = 0}
       }
-    },1000)
+    },50)
   }
-
-
-
  }
 
 

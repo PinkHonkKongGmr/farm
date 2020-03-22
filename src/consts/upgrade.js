@@ -6,7 +6,7 @@ const upgrade ={
         limit:4
     },
     chicken:{
-        timeToGenerateStart:10,
+        timeToGenerate:10,
         threshold:100,
         minus:1,
         limit:7

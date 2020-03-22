@@ -15,12 +15,14 @@ class Drugger extends React.Component{
         this.removeMethod = null;
         this.state ={dragged:false}
         this.contentLocal = null;
+        this.timeToGenerate = null 
+        this.balls = null
     }
 
     removeController =()=>{
         const {getProfit} = this.props
         this.removeControllerInterval = setInterval(()=>{
-            if(this.props.idToRemove===this.id){
+            if(this.props.idToRemove === this.id){
                 this.id= uniqid()
                 this.container=this.homeContainer
                 this.setState({dragged:false, product:0, status:this.status})
@@ -32,20 +34,52 @@ class Drugger extends React.Component{
         })
     }
 
+    foodStatusController = () => {
+        console.log('this.state.food', this.foodControlRef.current)
+        this.state.food > 0 ? this.foodControlRef.current.style.backgroundColor = '#b2ec5d' :
+        this.foodControlRef.current.style.backgroundColor = 'red'
+    }
+    
+    generateStatusController = (q, proc) => {
+        const proceed = q * proc
+        if(proceed > 0 && proceed < 25){
+          this.generateControlRef.current.style.backgroundColor = '#ffff66'
+        }
+        if(proceed > 15 && proceed < 27){
+          this.generateControlRef.current.style.backgroundColor = '#fff44f'
+        }
+        if(proceed > 27 && proceed < 50){
+          this.generateControlRef.current.style.backgroundColor = '#ced23a'
+        }
+        if(proceed > 50 && proceed < 76){
+          this.generateControlRef.current.style.backgroundColor = '#b2ec5d'
+        }
+        if(proceed > 82 && proceed < 100){
+          this.generateControlRef.current.style.backgroundColor = '#5da130'
+        }
+        this.generateControlRef.current.style.height = `${proceed}%`
+      }
+
+      colorBack = () => this.generateControlRef.current.style.backgroundColor = 'red'
+
     generator = () =>{
         let countDown = 0 
         this.interval = setInterval(()=>{
+        this.foodStatusController()    
         if(this.state.food > 0){
         countDown ++;
-        if(countDown === this.timeToGenerate)
-        {countDown = 0;   
+        const q = 5/this.timeToGenerate 
+        this.generateStatusController(q, countDown)
+        if(countDown === this.timeToGenerate * 20)
+        {countDown = 0;  
+        this.colorBack()       
         this.stateActions()
         this.sumProductUp();
         this.upgrade()
         this.control()
       };
       }
-    },1000)
+    },50)
    }
 
     
@@ -92,14 +126,14 @@ class Drugger extends React.Component{
        const classNames = `${this.props.name} ${this.state.status} household ${tosee}`
        const product = this.state.dragged ? this.props.product : ''  
        const value = this.state.dragged ? this.state.product : ''    
-
+       const feedind = this.props.name !=='rye' ? <div className = 'ball'>{this.state.food}</div> :null
        const element = <div className ={classNames}
             draggable={!this.state.dragged} 
             onDragStart={this.onStart} 
             onDragEnd={this.onDragEndHandler} 
         >
 
-        <div>{product} {this.state.controlElements}{value}</div>
+    <div>{product} {this.controlElements}{value}{feedind}</div>
         </div>
 
         
