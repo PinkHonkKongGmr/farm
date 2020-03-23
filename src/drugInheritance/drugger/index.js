@@ -7,16 +7,16 @@ import './common.scss'
 class Drugger extends React.Component{
     constructor(props){
         super(props)
-        this.homeContainer = document.createElement('div')
-        document.querySelector('body').appendChild(this.homeContainer)
+        this.homeContainer = document.createElement('div');
+        document.querySelector('body').appendChild(this.homeContainer);
         this.container = this.homeContainer
-        this.id = uniqid()
+        this.id = uniqid();
         this.method = null;
         this.removeMethod = null;
         this.state ={dragged:false}
         this.contentLocal = null;
-        this.timeToGenerate = null 
-        this.balls = null
+        this.timeToGenerate = null;
+        this.balls = null;
     }
 
     removeController =()=>{
@@ -35,7 +35,6 @@ class Drugger extends React.Component{
     }
 
     foodStatusController = () => {
-        console.log('this.state.food', this.foodControlRef.current)
         this.state.food > 0 ? this.foodControlRef.current.style.backgroundColor = '#b2ec5d' :
         this.foodControlRef.current.style.backgroundColor = 'rgb(253, 71, 71)'
     }
@@ -131,12 +130,9 @@ class Drugger extends React.Component{
             draggable={!this.state.dragged} 
             onDragStart={this.onStart} 
             onDragEnd={this.onDragEndHandler} 
-        >
-
-    <div>{product} {this.controlElements}{value}{feedind}</div>
+            >
+            <div className = 'name'>{product} {this.controlElements}{value}{feedind}</div>
         </div>
-
-        
         return ReactDom.createPortal(element, this.container)
     }
 
